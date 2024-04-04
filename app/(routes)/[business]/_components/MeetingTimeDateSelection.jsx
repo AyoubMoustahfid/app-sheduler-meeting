@@ -30,7 +30,7 @@ function MeetingTimeDateSelection({eventInfo, businessInfo}) {
     
     const router = useRouter()
     const db = getFirestore(app)
-    const plunk = new Plunk('sk_fa3cc41edde860fdc3fd9d55d27f4a585a0fdd6d28f37965')
+    const plunk = new Plunk(process.env.NEXT_SECRET_PLUNK_API_KEY)
 
     useEffect(() => {
         eventInfo?.duration && createTimeSlot(eventInfo?.duration)
