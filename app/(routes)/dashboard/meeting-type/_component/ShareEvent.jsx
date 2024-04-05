@@ -12,6 +12,7 @@ function ShareEvent({ eventData, onClose, onCopy }) {
         Informations de connexion ${eventData?.locationType}
         Lien de l'appel vidéo : ${eventData?.locationUrl}
     `
+    
 
     const shareOnSocialMedia = (platform) => {
         switch (platform) {
