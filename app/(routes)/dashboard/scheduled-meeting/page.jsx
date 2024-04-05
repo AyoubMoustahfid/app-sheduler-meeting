@@ -12,20 +12,20 @@ function ScheduledMeeting() {
     const db = getFirestore(app);
     const { user } = useKindeBrowserClient();
     const [meetingList, setMeetingList] = useState([]);
+
     useEffect(() => {
         user && getScheduledMeetings();
     }, [user])
+
     /**
      * Used to Get business prev Meetings
      */
     const getScheduledMeetings = async () => {
         setMeetingList([])
-        const q = query(collection(db, 'ScheduledMeetings'),
-            where('businessEmail', '==', user.email));
+        const q = query(collection(db, 'ScheduledMeetings'), where('businessEmail', '==', user.email));
         const querySnapshot = await getDocs(q);
 
         querySnapshot.forEach(doc => {
-            console.log(doc.data());
             setMeetingList(prev => [...prev, doc.data()])
         })
 
@@ -47,25 +47,28 @@ function ScheduledMeeting() {
     }
 
     return (
-        <div className='p-10'>
-            <h2 className='font-bold text-2xl'>Scheduled Meetings</h2>
-            <hr className='my-5'></hr>
-            <Tabs defaultValue="upcoming" className="w-[400px]">
-                <TabsList>
-                    <TabsTrigger value="upcoming">Upcoming</TabsTrigger>
-                    <TabsTrigger value="expired">Expired</TabsTrigger>
-                </TabsList>
-                <TabsContent value="upcoming">
-                    <ScheduledMeetingList
-                        meetingList={filterMeetingList('upcoming')}
-                    /> 
-                </TabsContent>
-                <TabsContent value="expired">
-                    <ScheduledMeetingList
-                        meetingList={filterMeetingList('expired')}
-                    />
-                </TabsContent>
-            </Tabs>
+        <div className='h-full grid grid-rows-[auto_1fr]'>
+            <div className="mb-5 py-3 ">
+                <h2 className='font-bold text-2xl'>Scheduled Meetings</h2>
+            </div>
+            <div className="h-full">
+                <Tabs defaultValue="upcoming">
+                    <TabsList>
+                        <TabsTrigger value="upcoming">Upcoming</TabsTrigger>
+                        <TabsTrigger value="expired">Expired</TabsTrigger>
+                    </TabsList>
+                    <TabsContent value="upcoming">
+                        <ScheduledMeetingList
+                            meetingList={filterMeetingList('upcoming')}
+                        />
+                    </TabsContent>
+                    <TabsContent value="expired">
+                        <ScheduledMeetingList
+                            meetingList={filterMeetingList('expired')}
+                        />
+                    </TabsContent>
+                </Tabs>
+            </div>
 
         </div>
     )

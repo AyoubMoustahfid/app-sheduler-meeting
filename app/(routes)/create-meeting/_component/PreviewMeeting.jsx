@@ -7,7 +7,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 
-function PreviewMeeting({formValue}) {
+function PreviewMeeting({ formValue, selectedDate, setSelectedDate }) {
 
     const [date, setDate] = useState(new Date())
     const [timeSlots, setTimeSlots] = useState()
@@ -31,7 +31,6 @@ function PreviewMeeting({formValue}) {
         setTimeSlots(slots)
     }
 
-    console.log('formValue:', formValue)
 
   return (
     <div 
@@ -75,8 +74,8 @@ function PreviewMeeting({formValue}) {
                     </h2>
                     <Calendar
                         mode="single"
-                        selected={date}
-                        onSelect={setDate}
+                        selected={selectedDate}
+                        onSelect={setSelectedDate}
                         className="rounded-md border mt-5"
                         disabled={(date) => date <= new Date()}
                     />

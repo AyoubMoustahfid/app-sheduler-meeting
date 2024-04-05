@@ -14,7 +14,6 @@ function TimeDateSelection({ date, handleDateChange, timeSlots, setSelectedTime,
         return (prevBooking.filter(item => item.selectedTime == time)).length > 0;
     }
 
-    console.log('enableTimeSlot', enableTimeSlot ? 'true' : 'false')
 
     return (
         <div className='md:col-span-2 flex px-4'>
@@ -34,7 +33,7 @@ function TimeDateSelection({ date, handleDateChange, timeSlots, setSelectedTime,
                 {timeSlots?.map((time, index) => (
                     <Button
                         key={index}
-                        //disabled={!enableTimeSlot || checkTimeSlot(time)}
+                        disabled={!enableTimeSlot || checkTimeSlot(time)}
                         onClick={() => setSelectedTime(time)}
                         className={`border-primary text-primary ${time == selectedTime && 'bg-primary text-white'}`} 
                         variant="outline">

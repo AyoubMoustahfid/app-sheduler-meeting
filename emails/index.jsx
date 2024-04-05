@@ -1,4 +1,5 @@
-import { Body, Button, Column, Container, Head, Heading, Html, Img, Preview, Row, Section, Text } from '@react-email/components';
+import { Body, Button, Column, Container, Head, Heading, Html, Img, Link, Preview, Row, Section, Text } from '@react-email/components';
+import { Copy } from 'lucide-react';
 import React from 'react'
 
 const baseUrl = '';
@@ -65,16 +66,17 @@ function Email({userFirstName, duration, meetingTime, date, meetingUrl, business
                                     marginTop: -5
                                 }}
                             >
-                                *Please Join meeting on above details
-                                {meetingUrl}
+                                  {`*Please Join meeting on above details: ${meetingUrl}`}
                             </Text>
                         </Column>
                     </Row>
                     <Row style={{ ...boxInfos, paddingTop: "0"}}>
                         <Column style={containerButton} colSpan={2}>
-                            <Button style={button}>
-                                Join Now
-                            </Button>
+                            <Link href={meetingUrl}>
+                                <Button style={button}>
+                                    Join Now
+                                </Button>
+                            </Link>
                         </Column>
                     </Row>
                 </Section>

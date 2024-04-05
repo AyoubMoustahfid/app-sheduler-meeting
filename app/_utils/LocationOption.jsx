@@ -4,7 +4,7 @@ export default [
         icon: '/zoom.png'
     },
     {
-        name: "Meet",
+        name: "Google Meet",
         icon: '/meet.png'
     },
     {

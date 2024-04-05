@@ -19,18 +19,18 @@ function DashboardHeader() {
     const {user} = useKindeBrowserClient()
 
   return user && (
-    <div className="p-4 px-10">
+    <div className="">
         <div>
             <DropdownMenu>
-                  <DropdownMenuTrigger className="flex items-center float-right">
+                  <DropdownMenuTrigger className="flex items-center justify-end w-full mb-3 pb-2 border-b-2 border-slat-400">
                     <Image
                         src={user?.picture}
                         alt="picture"
                         width={40}
                         height={40}
-                        className="rounded-full"
+                        className="rounded"
                     />
-                    <ChevronDown />
+                    <ChevronDown className="float-right" />
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>
                     <DropdownMenuLabel>My Account</DropdownMenuLabel>

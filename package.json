@@ -19,6 +19,7 @@
     "@radix-ui/react-tabs": "^1.0.4",
     "@react-email/components": "0.0.16",
     "@react-email/render": "0.0.12",
+    "@uidotdev/usehooks": "^2.4.1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "date-fns": "^3.6.0",

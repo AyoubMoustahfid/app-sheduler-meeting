@@ -6,6 +6,7 @@ import { Briefcase, Calendar, Clock, Plus, Settings } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { useWindowSize } from "@uidotdev/usehooks";
 
 function SideNavBar() {
     const menu = [
@@ -37,26 +38,30 @@ function SideNavBar() {
 
     const path = usePathname()
     const [activePath, setActivePath] = useState(path)
+    const {width} = useWindowSize();
+    const [demension, setDemension] = useState(width)
 
     useEffect(() => {
         path && setActivePath(path)
     }, [path])
 
+    useEffect(() => setDemension(width), [width])
+
   return (
-    <div className="p-5 py-14">
+    <div className="p-5 py-14 transform transition-transform duration-150 ease-in">
         <div className="flex justify-center">
             <Image
-                src="/logo.svg"
-                width={150}
-                height={150}
+                  src={demension <= 998 ? '/favicon.svg' : '/logo.svg'}
+                  width={demension <= 998 ? 30 : 150}
+                  height={demension <= 998 ? 30 : 150}
                 alt='logo'
             />
         </div>
 
         <Link href="/create-meeting">
-            <Button className="flex gap-2 w-full mt-7 rounded-full">
+            <Button className="flex gap-2 w-full mt-7 px-0 lg:px-2 rounded-md">
                 <Plus />
-                Create
+                <p className="hidden lg:block">Create</p>
             </Button>
         </Link>
 
@@ -65,10 +70,12 @@ function SideNavBar() {
                 <Link href={item.path} key={index}>
                     <Button
                         variant="ghost"
-                        className={`w-full flex gap-2 justify-start items-center ${activePath === item.path && "text-primary bg-blue-100" }`}
+                        className={`w-full grid grid-cols-5 gap-2 justify-start items-center px-0 lg:px-2 ${activePath === item.path && "text-primary bg-blue-100" }`}
                     >
-                        <item.icon/>
-                        {item.name}
+                        <item.icon
+                            className="col-span-5 lg:col-span-1 text-center lg:text-left w-full"
+                        />
+                        <p className="lg:col-span-4 hidden lg:block text-left">{item.name}</p>
                     </Button>
                 </Link>
             ))}

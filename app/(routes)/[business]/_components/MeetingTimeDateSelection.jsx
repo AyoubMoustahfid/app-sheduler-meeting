@@ -30,7 +30,7 @@ function MeetingTimeDateSelection({eventInfo, businessInfo}) {
     
     const router = useRouter()
     const db = getFirestore(app)
-    const plunk = new Plunk(process.env.NEXT_SECRET_PLUNK_API_KEY)
+    const plunk = new Plunk('sk_fa3cc41edde860fdc3fd9d55d27f4a585a0fdd6d28f37965')
 
     useEffect(() => {
         eventInfo?.duration && createTimeSlot(eventInfo?.duration)
@@ -55,7 +55,7 @@ function MeetingTimeDateSelection({eventInfo, businessInfo}) {
         setDate(date);
         const day = format(date, "EEEE");
         
-        if (businessInfo?.dayAvailable?.[day]){
+        if (businessInfo?.daysAvailable?.[day]){
             getPrevEventBooking(date)
             setEnabledTimeSlot(true)
         }else {
@@ -135,14 +135,14 @@ function MeetingTimeDateSelection({eventInfo, businessInfo}) {
 
         const querySnapshot = await getDocs(q);
 
+        console.log('querySnapshot', querySnapshot)
+
         querySnapshot.forEach((doc) => {
             console.log("--", doc.data());
             setPrevBooking(prev => [...prev, doc.data()])
         })
     }
     
-    console.log('step', step)
-
     return (
         <div className='p-5 py-10 shadow-lg m-5 border-t-8 mx-10 md:mx-26 lg:mx-56 my-10'
             style={{ borderTopColor: eventInfo?.themeColor }}

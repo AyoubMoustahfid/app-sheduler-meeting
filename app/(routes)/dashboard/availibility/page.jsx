@@ -76,7 +76,7 @@ function Availability() {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-5 my-3">
                 {DaysList && DaysList.map((item, index) => (
                     <div key={index}>
-                        <h2>
+                        <h2 className="flex items-center gap-1">
                             <Checkbox
                                 checked={daysAvailable && daysAvailable[item?.day] ? daysAvailable[item?.day] : false}
                                 onCheckedChange={e => onHandleChange(item.day, e)}

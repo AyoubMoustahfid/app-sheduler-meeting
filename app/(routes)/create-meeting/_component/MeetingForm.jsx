@@ -22,9 +22,8 @@ import { useRouter } from 'next/navigation'
 import { toast } from 'sonner'
 
 
-function MeetingForm({setFormValue}) {
+function MeetingForm({ setFormValue, selectedDate }) {
 
-    const [location, setLocation] = useState()
     const [themeColor, setThemeColor] = useState()
     const [eventName, setEventName] = useState()
     const [duration, setDuration] = useState(30)
@@ -56,7 +55,8 @@ function MeetingForm({setFormValue}) {
             locationUrl,
             themeColor,
             businessId: doc(db, 'Business', user?.email),
-            createdBy: user?.email 
+            createdBy: user?.email,
+            selectedDate: selectedDate
         })
 
         toast("New Meeting Event Created!")

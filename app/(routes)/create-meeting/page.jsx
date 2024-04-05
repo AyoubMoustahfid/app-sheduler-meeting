@@ -7,6 +7,7 @@ import PreviewMeeting from './_component/PreviewMeeting'
 function CreateMeeting() {
 
     const [formValue, setFormValue] = useState()
+    const [selectedDate, setSelectedDate] = useState(new Date());
 
 
   return (
@@ -14,10 +15,15 @@ function CreateMeeting() {
         <div className="shadow-sm border h-screen">
             <MeetingForm 
                 setFormValue={(value) => setFormValue(value)}
+                selectedDate={selectedDate}
             />
         </div>
         <div className="md:col-span-2">
-              <PreviewMeeting formValue={formValue}/>
+              <PreviewMeeting 
+                formValue={formValue}
+                selectedDate={selectedDate}
+                setSelectedDate={setSelectedDate}
+              />
         </div>
     </div>
   )
